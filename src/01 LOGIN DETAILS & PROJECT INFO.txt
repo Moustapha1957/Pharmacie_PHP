@@ -1,0 +1,21 @@
+**https://github.com/Moustapha1957/Pharmacie_PHP.git***
+
+**Nom de la base de données : simplepharmacy**
+
+**Développé par Ya Moustapha DIABY**
+
+**PHP recommandé versions 5.6, 7.4**
+
+
+**Login Details**
+
+Username: admin
+Password: Moustapha2024
+
+
+**Toutes les factures téléchargées (pdf) sont stockées dans le répertoire " C:/factures/ "**
+
+**Toutes les factures téléchargées (pdf) sont stockées dans le répertoire " C:/factures/ "**
+
+
+
