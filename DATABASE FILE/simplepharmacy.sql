@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 13, 2022 at 08:13 PM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Hôte : 127.0.0.1
+-- Généré le : ven. 19 jan. 2024 à 12:45
+-- Version du serveur : 10.4.27-MariaDB
+-- Version de PHP : 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `simplepharmacy`
+-- Base de données : `simplepharmacy`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `on_hold`
+-- Structure de la table `on_hold`
 --
 
 CREATE TABLE `on_hold` (
@@ -38,10 +39,10 @@ CREATE TABLE `on_hold` (
   `amount` bigint(11) NOT NULL,
   `profit_amount` bigint(11) NOT NULL,
   `date` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `on_hold`
+-- Déchargement des données de la table `on_hold`
 --
 
 INSERT INTO `on_hold` (`id`, `invoice_number`, `medicine_name`, `category`, `expire_date`, `qty`, `type`, `cost`, `amount`, `profit_amount`, `date`) VALUES
@@ -82,12 +83,18 @@ INSERT INTO `on_hold` (`id`, `invoice_number`, `medicine_name`, `category`, `exp
 (82, 'CA-2030293', 'Mucinex', 'Expectorant', '2026-08-25', 14, 'Bot', 37, 518, 112, '08/13/2022'),
 (83, 'CA-9090029', 'Methisazone', 'Antiviral', '2026-08-03', 4, 'Tab', 12, 48, 16, '08/13/2022'),
 (84, 'CA-9090029', 'Alprazolam', 'Tranquilizer', '2026-10-06', 5, 'Tab', 19, 95, 45, '08/13/2022'),
-(85, 'CA-3909093', 'Fluconazole', 'Antifungals', '2026-08-13', 5, 'Tab', 29, 145, 35, '08/13/2022');
+(85, 'CA-3909093', 'Fluconazole', 'Antifungals', '2026-08-13', 5, 'Tab', 29, 145, 35, '08/13/2022'),
+(96, 'undefined', 'Alprazolam', 'Tranquilizer', '2026-10-06', 1, 'Tab', 19, 19, 9, '06/23/2023'),
+(98, 'CA-3909302', 'Estazolam', 'Sedatives', '2026-08-26', 2, 'Bot', 54, 108, 26, '11/20/2023'),
+(100, 'CA-3909302', 'Paracetemol', 'Painkiller', '2022-10-01', 1, 'Bot', 2, 2, 1, '11/20/2023'),
+(102, 'CA-0032903', 'Alprazolam', 'Tranquilizer', '2026-10-06', 2, 'Bot', 19, 38, 18, '11/24/2023'),
+(103, 'CA-0032903', 'Estazolam', 'Sedatives', '2026-08-26', 2, 'Bot', 54, 108, 26, '11/24/2023'),
+(104, 'CA-0032903', 'Mucinex', 'Expectorant', '2026-08-25', 2, 'Bot', 37, 74, 16, '11/24/2023');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sales`
+-- Structure de la table `sales`
 --
 
 CREATE TABLE `sales` (
@@ -98,10 +105,10 @@ CREATE TABLE `sales` (
   `total_amount` bigint(11) NOT NULL,
   `total_profit` bigint(11) NOT NULL,
   `Date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `sales`
+-- Déchargement des données de la table `sales`
 --
 
 INSERT INTO `sales` (`id`, `invoice_number`, `medicines`, `quantity`, `total_amount`, `total_profit`, `Date`) VALUES
@@ -132,12 +139,15 @@ INSERT INTO `sales` (`id`, `invoice_number`, `medicines`, `quantity`, `total_amo
 (25, 'CA-2020390', 'Altretamine', '9(Sachet)', 783, 126, '2022-08-13'),
 (26, 'CA-2030293', 'Mucinex', '14(Bot)', 518, 112, '2022-08-13'),
 (27, 'CA-9090029', 'Methisazone,Alprazolam', '4(Tab),5(Tab)', 143, 61, '2022-08-13'),
-(28, 'CA-3909093', 'Fluconazole', '5(Tab)', 145, 35, '2022-08-13');
+(28, 'CA-3909093', 'Fluconazole', '5(Tab)', 145, 35, '2022-08-13'),
+(29, 'undefined', 'Alprazolam', '1(Tab)', 19, 9, '2023-06-23'),
+(30, 'CA-3909302', 'Estazolam,Paracetemol', '2(Bot),1(Bot)', 110, 27, '2023-11-20'),
+(31, 'CA-0032903', 'Alprazolam,Estazolam,Mucinex', '2(Bot),2(Bot),2(Bot)', 220, 60, '2023-11-24');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stock`
+-- Structure de la table `stock`
 --
 
 CREATE TABLE `stock` (
@@ -157,16 +167,16 @@ CREATE TABLE `stock` (
   `selling_price` int(100) NOT NULL,
   `profit_price` varchar(100) NOT NULL,
   `status` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `stock`
+-- Déchargement des données de la table `stock`
 --
 
 INSERT INTO `stock` (`id`, `bar_code`, `medicine_name`, `category`, `quantity`, `used_quantity`, `remain_quantity`, `act_remain_quantity`, `register_date`, `expire_date`, `company`, `sell_type`, `actual_price`, `selling_price`, `profit_price`, `status`) VALUES
-(21, '1112', 'Paracetemol', 'Painkiller', 20, 18, 2, 2, '2020-03-04', '2022-10-01', 'none', 'Bot', 1, 2, '1(100%)', 'Available'),
+(21, '1112', 'Paracetemol', 'Painkiller', 44, 19, 25, 25, '2020-03-04', '2025-10-01', 'none', 'Bot', 1, 2, '1(100%)', 'Available'),
 (23, '1121', 'Biogesic', 'Painkiller', 50, 4, 46, 46, '2020-03-05', '2023-03-06', 'none', 'Bot', 5, 9, '4(80%)', 'Available'),
-(24, '101', 'Demo Med', 'Demo Category', 100, 12, 88, 88, '2022-08-06', '2022-08-17', 'none', 'Tab', 10, 18, '8(80%)', 'Available'),
+(24, '101', 'Demo Med', 'Demo Category', 100, 12, 88, 88, '2022-08-06', '2025-08-17', 'none', 'Bot', 10, 18, '8(80%)', 'Available'),
 (25, '1001', 'Doxycycline', 'Antibiotics', 203, 5, 198, 198, '2022-08-11', '2025-08-09', 'none', 'Tab', 2, 4, '2(100%)', 'Available'),
 (26, '1003', 'Methisazone', 'Antiviral', 300, 4, 296, 296, '2022-08-13', '2026-08-03', 'none', 'Tab', 8, 12, '4(50%)', 'Available'),
 (27, '1020', 'Deplin', 'Vitamins', 129, 6, 123, 123, '2022-08-10', '2026-09-14', 'none', 'Sachet', 113, 141, '28(25%)', 'Available'),
@@ -174,70 +184,86 @@ INSERT INTO `stock` (`id`, `bar_code`, `medicine_name`, `category`, `quantity`, 
 (29, '2220', 'Altretamine', 'Antineoplastics', 177, 9, 168, 168, '2022-08-13', '2026-08-12', 'none', 'Sachet', 73, 87, '14(19%)', 'Available'),
 (30, '2022', 'Econazole', 'Antifungals', 247, 10, 237, 239, '2022-08-13', '2027-11-17', 'none', 'Sachet', 17, 24, '7(41%)', 'Available'),
 (31, '1779', 'Fluconazole', 'Antifungals', 155, 11, 144, 144, '2022-08-13', '2026-08-13', 'none', 'Tab', 22, 29, '7(32%)', 'Available'),
-(32, '1906', 'Mucinex', 'Expectorant', 109, 5, 104, 95, '2022-08-13', '2026-08-25', 'none', 'Bot', 29, 37, '8(28%)', 'Available'),
-(33, '2779', 'Estazolam', 'Sedatives', 366, 12, 354, 354, '2022-08-13', '2026-08-26', 'none', 'Bot', 41, 54, '13(32%)', 'Available'),
-(34, '2269', 'Alprazolam', 'Tranquilizer', 287, 5, 282, 287, '2022-08-13', '2026-10-06', 'none', 'Tab', 10, 19, '9(90%)', 'Available');
+(32, '1906', 'Mucinex', 'Expectorant', 109, 7, 102, 95, '2022-08-13', '2026-08-25', 'none', 'Bot', 29, 37, '8(28%)', 'Available'),
+(33, '2779', 'Estazolam', 'Sedatives', 366, 16, 350, 352, '2022-08-13', '2026-08-26', 'none', 'Bot', 41, 54, '13(32%)', 'Available'),
+(34, '2269', 'Alprazolam', 'Tranquilizer', 300, 8, 292, 292, '2022-08-13', '2026-10-06', 'none', 'Bot', 10, 19, '9(90%)', 'Available');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `users`
 --
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `user_name` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `users`
+-- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `user_name`, `password`) VALUES
-(1, 'admin', '6812f136d636e737248d365016f8cfd5139e387c');
+(1, 'admin', '$2y$10$rp23egRmPUmiiILIwzd9Re6zTXJbPf7NNusxtX7oL9YEOkW.SMbmq');
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `on_hold`
+-- Index pour la table `on_hold`
 --
 ALTER TABLE `on_hold`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `sales`
+-- Index pour la table `sales`
 --
 ALTER TABLE `sales`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `stock`
+-- Index pour la table `stock`
 --
 ALTER TABLE `stock`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Index pour la table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `on_hold`
+-- AUTO_INCREMENT pour la table `on_hold`
 --
 ALTER TABLE `on_hold`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+
 --
--- AUTO_INCREMENT for table `sales`
+-- AUTO_INCREMENT pour la table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
 --
--- AUTO_INCREMENT for table `stock`
+-- AUTO_INCREMENT pour la table `stock`
 --
 ALTER TABLE `stock`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
